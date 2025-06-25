@@ -1,0 +1,288 @@
+/* 1.全体のベースデザイン */
+
+/* 画面全体の背景・フォント */
+body {
+    background-color: #f9fafc;
+    font-family: "Segoe UI", "Meiryo", sans-serif;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* アプリのメイン枠 */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* 2.タイトルを大きく目立たせる */
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #3f51b5;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3f51b5;
+    padding-bottom: 5px;
+}
+
+/* 3.メモ作成エリア */
+
+#memo-input-area {
+    background: #f0f4ff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #e0e8ff;
+}
+
+#memo-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+#memo-input:focus {
+    border-color: #3f51b5;
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.3);
+}
+
+#save-btn {
+    background: #3f51b5;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(63, 81, 181, 0.2);
+    transition: all 0.2s;
+}
+
+#save-btn:hover {
+    background: #283593;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(63, 81, 181, 0.3);
+}
+
+/* 4.メモ一覧の表示部分 */
+
+#memo-list-area {
+    margin-top: 20px;
+}
+
+#memo-list {
+    min-height: 100px;
+}
+
+.memo-item {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: all 0.2s;
+}
+
+.memo-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.memo-content {
+    flex: 1;
+    font-size: 1rem;
+    color: #333;
+    word-break: break-word;
+    margin-right: 15px;
+}
+
+.memo-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.edit-btn {
+    background: #4caf50;
+    color: #fff;
+}
+
+.edit-btn:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+}
+
+.delete-btn {
+    background: #f44336;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background: #da190b;
+    transform: translateY(-1px);
+}
+
+/* 5.編集モーダルのデザイン */
+
+/* モーダルの背景 */
+.modal {
+    display: none; /* デフォルトは非表示 */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒 */
+    justify-content: center;
+    align-items: center;
+}
+
+/* モーダルの中身 */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* 閉じるボタン */
+.close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* 編集用テキストエリア */
+#edit-memo-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+#edit-memo-input:focus {
+    border-color: #3f51b5;
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.3);
+}
+
+/* 編集/保存ボタンを目立たせる */
+#update-btn,
+#cancel-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#update-btn {
+    background: #3f51b5;
+    color: #fff;
+}
+
+#update-btn:hover {
+    background: #283593;
+}
+
+#cancel-btn {
+    background: #ccc;
+    color: #333;
+}
+
+#cancel-btn:hover {
+    background: #bbb;
+}
+
+/* 6.レスポンシブ対応 */
+
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .memo-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .memo-actions {
+        margin-top: 10px;
+        justify-content: flex-end;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+}
+
+/* メモがない場合のメッセージ */
+.no-memos {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 20px;
+}
